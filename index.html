@@ -931,24 +931,28 @@ p, .desc-ugc, #ugc-desc {
 .titre-majeur {
     color: #D8A39D !important;
 }
-/* --- AJUSTEMENT LOGO CENTRE MOBILE --- */
+/* --- EN-TÊTE COMPACT MOBILE --- */
 @media screen and (max-width: 768px) {
     header, .navbar, .nav-container {
+        padding: 0 !important;        /* Supprime l'espace interne haut/bas */
+        margin: 0 !important;         /* Supprime l'espace externe */
+        min-height: auto !important;  /* Autorise la barre à être fine */
+        height: auto !important;      /* La barre s'adapte à la taille du logo */
         display: flex !important;
-        justify-content: center !important; /* Centre horizontalement */
-        align-items: center !important;     /* Centre verticalement */
-        position: fixed !important;
-        top: 0 !important;
-        width: 100% !important;
-        background-color: #1a1c17 !important;
-        z-index: 9999 !important;
+        align-items: center !important;
+        justify-content: center !important;
     }
 
-    /* Force le logo lui-même à ne pas avoir de marges qui le décalent */
     header img, .logo {
-        margin: 0 auto !important;
         display: block !important;
-        max-height: 80px !important; /* Ajuste selon la taille voulue */
+        margin: 0 auto !important;    /* Centre horizontalement sans espace vertical */
+        padding: 0 !important;        /* Supprime le rembourrage interne de l'image */
+        max-height: 100px !important; /* Garde une belle taille pour les détails */
+    }
+
+    /* On remonte la vidéo au maximum */
+    body {
+        padding-top: 100px !important; /* Doit être égal à la taille réelle de ton logo */
     }
 }
 
