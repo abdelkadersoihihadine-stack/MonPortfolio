@@ -931,6 +931,25 @@ p, .desc-ugc, #ugc-desc {
 .titre-majeur {
     color: #D8A39D !important;
 }
+/* --- BLOC MOBILE UNIQUEMENT --- */
+@media screen and (max-width: 768px) {
+    header, .navbar, .nav-container {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        z-index: 9999 !important;
+        background-color: #1a1c17 !important; /* Ton vert sombre pour masquer le blanc */
+        padding: 10px 0 !important;
+    }
+
+    /* On décale le contenu uniquement sur mobile pour ne pas qu'il soit caché */
+    body {
+        padding-top: 70px !important; 
+    }
+}
+/* --- FIN DU BLOC MOBILE --- */
+
   </style>
 </head>
 <body>
