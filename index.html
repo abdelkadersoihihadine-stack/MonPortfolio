@@ -1,0 +1,1731 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio de NoorahSPHÈRE - UGC Creator spécialisée en Beauté Consciente et Éco-Responsable">
+    <meta name="author" content="NoorahSPHÈRE">
+    <title>NoorahSPHÈRE | UGC Creator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/webp" href="assets/images/logo-nom.webp">
+    <link rel="shortcut icon" href="assets/images/logo-nom.webp">
+    <link rel="apple-touch-icon" href="assets/images/logo-nom.webp">
+  <style>
+/* ============================================ */
+/* RÉINITIALISATION ET VARIABLES CSS */
+/* ============================================ */
+:root {
+  --couleur-fond: #F8F1E4;
+  --couleur-texte: #2C6B2F;
+  --couleur-titres: #D8A39D;
+  --couleur-blanc: #FFFFFF;
+  --couleur-noir: #000000;
+  --font-titres: 'Playfair Display', serif;
+  --font-corps: 'Poppins', sans-serif;
+  --transition-rapide: 0.3s ease;
+  --transition-lente: 0.5s ease;
+
+  /* =============================================
+     ESPACEMENT UNIFIÉ — modifiez ces 2 valeurs
+     pour ajuster tout le site d'un seul coup
+     ============================================= */
+  --section-padding-v: 60px;   /* haut ET bas de chaque section  */
+  --titre-gap: 40px;           /* espace sous le bloc titre/sous-titre */
+}
+
+* { 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-corps);
+  background-color: var(--couleur-fond);
+  color: var(--couleur-texte);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+/* ============================================ */
+/* HEADER FIXE ET TRANSPARENT AU DÉFILEMENT */
+/* ============================================ */
+.header-principal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 1.5rem 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all var(--transition-lente);
+  background-color: transparent;
+}
+.header-principal.scrolled {
+  background-color: rgba(248, 241, 228, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 20px rgba(44, 107, 47, 0.1);
+  padding: 1rem 5%;
+}
+.logo-marque { display: flex; align-items: center; text-decoration: none; }
+.header-principal .logo-marque .logo-image { height: 100px; display: block; filter: none; opacity: 1; }
+.navigation-principale { display: flex; gap: 2.5rem; }
+.lien-navigation {
+  font-family: var(--font-corps);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--couleur-texte);
+  text-decoration: none;
+  position: relative;
+  padding: 0.5rem 0;
+  transition: color var(--transition-rapide);
+}
+.lien-navigation::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background-color: var(--couleur-titres);
+  transition: width var(--transition-rapide);
+}
+.lien-navigation:hover { color: var(--couleur-titres); }
+.lien-navigation:hover::after { width: 100%; }
+
+/* ============================================ */
+/* STYLES GÉNÉRIQUES DES SECTIONS
+   — Un seul padding cohérent pour tout le site
+   ============================================ */
+.section-contenu {
+  padding: 20px 5% 30px 5%;
+  border-bottom: 1px solid rgba(44, 107, 47, 0.05);
+}
+/* Bloc titre + sous-titre centré */
+.conteneur-titre-section {
+  text-align: center;
+  margin-bottom: var(--titre-gap);
+}
+.titre-section {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  color: var(--couleur-texte);
+  margin-bottom: 10px;
+}
+.sous-titre-section {
+  color: var(--couleur-titres);
+  font-size: 1.1rem;
+}
+/* ============================================ */
+/* SECTION HÉRO (VIDÉO) */
+/* ============================================ */
+.section-hero-pc {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.section-hero-mobile {
+  display: none;
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  overflow: hidden;
+}
+.conteneur-media-hero {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 1;
+}
+.video-fond-hero {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: brightness(0.8);
+}
+.overlay-hero {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(to bottom, rgba(248,241,228,0) 0%, rgba(248,241,228,0.2) 70%, #F8F1E4 100%);
+  z-index: 2;
+}
+.contenu-hero {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.phrase-girly {
+  font-family: var(--font-titres);
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: #F8F1E4;
+  margin-bottom: 0.5rem;
+  display: block;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+}
+.titre-principal-hero {
+  font-family: var(--font-titres);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 700;
+  color: #D8A39D;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+  animation: fadeInUp 1s ease-out;
+}
+/* ============================================ */
+/* SECTION ACCUEIL (TEXTE) */
+/* ============================================ */
+.section-accueil-info {
+  background-color: #F8F1E4;
+  padding: 20px 5% 30px 10%;
+  text-align: center;
+}
+.titre-accueil-grand {
+  font-family: var(--font-titres);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: bold;
+  color: #F8F1E4;
+  background-color: rgba(44, 107, 47, 0.1);
+  display: inline-block;
+  padding: 10px 20px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  text-shadow: -1px -1px 0 #2C6B2F, 1px -1px 0 #2C6B2F, -1px 1px 0 #2C6B2F, 1px 1px 0 #2C6B2F;
+}
+.texte-accueil-vert {
+  color: #2C6B2F;
+  font-size: 1.2rem;
+  max-width: 900px;
+  margin: 0 auto 30px;
+  white-space: pre-line;
+  font-weight: 400;
+}
+.certifications-ivoire {
+  color: #F8F1E4;
+  background-color: #2C6B2F;
+  display: inline-block;
+  padding: 20px;
+  border-radius: 15px;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 20px;
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+/* ============================================ */
+/* GRILLES VIDÉOS ET PHOTOS */
+/* ============================================ */
+.grille-medias {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.carte-media {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(44, 107, 47, 0.08);
+  transition: transform var(--transition-rapide);
+}
+.carte-media:hover { transform: translateY(-10px); }
+.video-ugc, .image-ugc {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  display: block;
+}
+.infos-media { padding: 20px; text-align: center; }
+.infos-media h3 { font-family: var(--font-titres); color: var(--couleur-texte); margin-bottom: 5px; }
+.conteneur-animation-photo {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  overflow: hidden;
+  position: relative;
+}
+.rail-photos {
+  display: flex;
+  flex-direction: column;
+  height: 300%;
+  animation: defilementVertical 12s infinite ease-in-out;
+}
+.rail-photos img { width: 100%; height: 33.333%; object-fit: cover; }
+@keyframes defilementVertical {
+  0%, 25%  { transform: translateY(0); }
+  33%, 58% { transform: translateY(-33.333%); }
+  66%, 91% { transform: translateY(-66.666%); }
+  100%     { transform: translateY(0); }
+}
+/* ============================================ */
+/* SECTION MOI */
+/* ============================================ */
+.section-moi {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 50px;
+  align-items: center;
+  background-color: #F8F1E4;
+  padding: 20px 5% 60px 5%;
+  border-bottom: 1px solid rgba(44, 107, 47, 0.05);
+}
+.contenu-texte-moi { text-align: left; color: #2C6B2F; font-family: 'Poppins', sans-serif; line-height: 1.8; }
+.titre-moi { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 700; margin-bottom: 20px; color: #2C6B2F; }
+.prenom-moi { font-weight: 700; font-size: 1.3rem; margin-bottom: 15px; display: block; }
+.paragraphe-moi { margin-bottom: 20px; font-size: 1.1rem; }
+.conteneur-animation-photo-moi {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  overflow: hidden;
+  position: relative;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(44, 107, 47, 0.08);
+}
+.rail-photos-moi {
+  display: flex;
+  flex-direction: column;
+  height: 700%;
+  animation: defilementVerticalMoi 28s infinite ease-in-out;
+}
+.rail-photos-moi img { width: 100%; height: 14.285%; object-fit: cover; }
+@keyframes defilementVerticalMoi {
+  0%, 12%   { transform: translateY(0); }
+  14.28%, 26.28% { transform: translateY(-14.285%); }
+  28.57%, 40.57% { transform: translateY(-28.571%); }
+  42.85%, 54.85% { transform: translateY(-42.857%); }
+  57.14%, 69.14% { transform: translateY(-57.142%); }
+  71.42%, 83.42% { transform: translateY(-71.428%); }
+  85.71%, 97.71% { transform: translateY(-85.714%); }
+  100%           { transform: translateY(0); }
+}
+/* ============================================ */
+/* SECTION SKILLS */
+/* ============================================ */
+.section-skills {
+  background-color: #F8F1E4;
+  padding: 20px 5% 60px 5%;
+  border-bottom: 1px solid rgba(44, 107, 47, 0.05);
+}
+.conteneur-intermediaire { max-width: 1200px; margin: 0 auto; }
+.skills-split-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  align-items: flex-start;
+}
+.skills-left-content  { flex: 1; min-width: 300px; }
+.skills-right-visuals {
+  flex: 1.2; min-width: 300px;
+  background: rgba(255,255,255,0.03);
+  padding: 30px;
+  border-radius: 20px;
+}
+.section-desc { font-size: 1rem; color: #2C6B2F; margin-top: 10px; margin-bottom: 20px; }
+.align-gauche { text-align: left; }
+.liste-piliers-skills { margin-top: 30px; display: flex; flex-direction: column; gap: 25px; }
+.pilier-item { display: flex; gap: 15px; align-items: flex-start; }
+.skill-title { font-size: 1.2rem; color: #f7aef7; margin-bottom: 5px; }
+.skills-right-visuals .titre-equipement {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  color: #2C6B2F;
+  font-weight: bold;
+  margin-bottom: 30px;
+  display: block;
+  text-align: left;
+}
+.grille-equipement {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 20px;
+}
+.card-equipement { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.equipement-img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: transform 0.3s ease;
+}
+.equipement-img:hover { transform: scale(1.05); }
+.equipement-text-under { margin-top: 10px; font-size: 0.85rem; line-height: 1.2; color: #2C6B2F; }
+
+/* ============================================ */
+/* SECTION NOORAHSPHÈRE (ADN) */
+/* ============================================ */
+.section-noorahsphere-concept {
+  width: 100%;
+  background-color: #E9F0E9;
+  padding: 20px 5% 60px 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 1px solid rgba(44, 107, 47, 0.1);
+}
+.layout-noorahsphere {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 40px;
+  max-width: 1200px;
+  align-items: center;
+}
+.adn-texte { color: #2C6B2F; }
+.titre-adn { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; margin-bottom: 25px; line-height: 1.2; }
+.equation-nom { background: rgba(255,255,255,0.5); padding: 25px; border-radius: 15px; border-left: 5px solid #D8A39D; margin: 20px 0; }
+.equation-item { margin-bottom: 10px; font-size: 1.1rem; }
+.equation-item strong { color: #D8A39D; font-family: 'Playfair Display', serif; }
+.promesse-marque { font-style: italic; font-size: 1.2rem; font-weight: 500; border-top: 1px solid rgba(44,107,47,0.2); padding-top: 20px; margin-top: 20px; }
+.visual-nexus { position: relative; height: 450px; display: flex; justify-content: center; align-items: center; }
+.triangle-container { position: relative; width: 300px; height: 300px; }
+.point-nexus {
+  position: absolute;
+  width: 100px; height: 100px;
+  background: white;
+  border-radius: 50%;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  transition: all 0.5s ease;
+  z-index: 2;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255,255,255,0.3);
+}
+.point-nexus span { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; }
+.science   { top: -20px; left: 50%; transform: translateX(-50%); animation: float 4s infinite ease-in-out; }
+.esthetique{ bottom: -20px; left: -20px; animation: float 5s infinite ease-in-out; }
+.ethique   { bottom: -20px; right: -20px; animation: float 6s infinite ease-in-out; }
+.centre-lumiere {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150px; height: 150px;
+  background: radial-gradient(circle, rgba(216,163,157,0.4) 0%, rgba(216,163,157,0) 70%);
+  border-radius: 50%; z-index: 1; filter: blur(10px);
+}
+@keyframes float {
+  0%, 100% { transform: translate(0,0); }
+  50%       { transform: translate(0,-15px); }
+}
+.transition-footer {
+  width: 100%; text-align: center;
+  margin-top: 50px; padding: 30px;
+  background: #2C6B2F; color: #F8F1E4;
+  border-radius: 15px; max-width: 1000px;
+}
+/* ============================================ */
+/* SECTION MES 3 SPHÈRES */
+/* ============================================ */
+.section-mes-spheres {
+  width: 100%;
+  padding: 20px 5% 60px 5%;
+  background-color: #1a1c17;
+}
+/* Bloc header standard (titre + phrase) utilisé dans plusieurs sections sombres */
+.header-section-standard {
+  text-align: center;
+  padding: 0 20px var(--titre-gap);
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+}
+.grand-titre-section {
+  font-size: 3rem;
+  color: #f7aef7;
+  margin-bottom: 15px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.phrase-presentation-section {
+  font-size: 1.2rem;
+  color: #e0e0e0;
+  max-width: 700px;
+  line-height: 1.6;
+  margin: 0;
+}
+.conteneur-spheres {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.carte-sphere {
+  position: relative;
+  height: 500px;
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: #000;
+}
+.conteneur-defilement-horizontal { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+.rail-horizontal {
+  display: flex; height: 100%;
+  width: max-content;
+  animation: glissementInfini 100s linear infinite;
+  will-change: transform; transform: translateZ(0); backface-visibility: hidden;
+}
+.media-horizontal {
+  height: 100%; width: auto;
+  min-width: 281px;
+  object-fit: cover;
+  flex-shrink: 0;
+  margin-right: -1px;
+}
+@keyframes glissementInfini {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.overlay-sphere {
+  position: absolute; bottom: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 40%, transparent 100%);
+  z-index: 2; pointer-events: none;
+}
+.contenu-texte-sphere {
+  position: absolute; bottom: 0; left: 0;
+  width: 100%; z-index: 3;
+  padding: 30px; text-align: center; box-sizing: border-box;
+}
+.titre-sphere  { font-size: 1.8rem; margin-bottom: 8px; font-family: 'Playfair Display', serif; }
+.sous-titre-sphere  { font-weight: bold; font-size: 1rem; margin-bottom: 5px; color: #95b391; }
+.description-sphere { font-size: 0.9rem; color: #f1f1f1; line-height: 1.4; }
+.phrase-conclusion-spheres {
+  grid-column: 1 / -1;
+  text-align: center; color: #F8F1E4;
+  font-size: 1.1rem; font-family: 'Poppins', sans-serif;
+  margin-top: 40px; padding: 20px; line-height: 1.6;
+  border-top: 1px solid rgba(149,179,145,0.2);
+}
+/* ============================================ */
+/* SECTION UGC KEZACO */
+/* ============================================ */
+.section-kezaco {
+  background-color: #E0D5BC;
+  padding: 60px 5% 30px 5%;
+  color: #fff;
+}
+.z-pattern-row { display: flex; align-items: center; gap: 60px; margin-bottom: 80px; }
+.z-pattern-row.reverse { flex-direction: row-reverse; }
+.z-text, .z-visual { flex: 1; }
+.kezaco-subtitle { font-size: 2rem; color: #2d4a22; margin-bottom: 20px; }
+.duel-container { display: flex; gap: 20px; margin-top: 30px; }
+.card-duel { padding: 20px; border-radius: 15px; flex: 1; border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; }
+.card-duel h4 { color: #f7aef7; margin-bottom: 10px; }
+.card-duel.ugc { background: rgba(45,74,34,0.1); border-color: #2d4a22; }
+.duel-tag { display: inline-block; margin-top: 15px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; opacity: 0.7; }
+.rose-accent { color: #f7aef7; font-size: 4rem; font-weight: 900; display: block; }
+.stat-highlight, .stat-box-main { text-align: center; padding: 40px; border-radius: 20px; background: rgba(255,255,255,0.03); }
+.liste-stats { list-style: none; padding: 0; }
+.liste-stats li { margin-bottom: 20px; font-size: 1.1rem; display: flex; align-items: center; gap: 15px; }
+.icon-green { font-style: normal; color: #2d4a22; }
+.piliers-ugc { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 60px; text-align: center; }
+.pilier-card { padding: 30px; background: #0a0a0a; border-radius: 20px; border-bottom: 4px solid #2d4a22; }
+.pilier-icon { font-size: 2.5rem; margin-bottom: 15px; }
+
+/* ============================================ */
+/* SECTION POURQUOI MOI */
+/* ============================================ */
+.section-pourquoi {
+  padding: 20px 5% 60px 5%;
+  background-color: #F8F1E4;
+}
+.bento-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto;
+  gap: 30px;
+  margin-top: 40px;
+}
+.bento-card {
+  background: #0a0a0a;
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 24px; padding: 35px;
+  transition: all 0.4s cubic-bezier(0.165,0.84,0.44,1);
+  position: relative; overflow: hidden;
+}
+.bento-large { grid-column: span 2; }
+.bento-tall  { grid-row: span 2; display: flex; align-items: center; }
+.bento-content h3 { font-size: 1.4rem; margin: 15px 0; font-weight: bold; }
+.bento-content p  { color: #b0b0b0; line-height: 1.6; font-size: 0.95rem; }
+.bento-icon { font-size: 2rem; }
+.card-green:hover { border-color: #2d4a22; box-shadow: 0 0 25px rgba(45,74,34,0.4); transform: translateY(-5px); }
+.card-pink:hover  { border-color: #f7aef7; box-shadow: 0 0 25px rgba(247,174,247,0.3); transform: translateY(-5px); }
+.card-green h3 { color: #2d4a22; }
+.card-pink h3  { color: #f7aef7; }
+.bento-tags { margin-top: 20px; display: flex; gap: 10px; }
+.bento-tags span { background: rgba(247,174,247,0.1); color: #f7aef7; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; }
+.points-cles-bar { display: flex; justify-content: center; gap: 40px; margin-top: 50px; padding: 20px; border-top: 1px solid rgba(255,255,255,0.05); }
+.point-item { color: #2C6B2F; font-size: 1.1rem; }
+
+/* ============================================ */
+/* SECTION UNIVERS VISUEL */
+/* ============================================ */
+.section-univers-visuel {
+  background-color: #1a1c17;
+  padding: 20px 5% 60px 5%;
+  font-family: 'Poppins', sans-serif;
+  color: #f1f1f1;
+}
+.conteneur-univers {
+  max-width: 1300px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 60px; align-items: stretch;
+}
+.texte-univers { display: flex; flex-direction: column; justify-content: center; }
+.titre-univers { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: #95b391; margin-bottom: 30px; text-transform: uppercase; }
+.categorie-univers { margin-bottom: 35px; }
+.titre-categorie { font-size: 1.3rem; font-weight: 700; margin-bottom: 10px; color: #d8a39d; }
+.texte-univers p, .texte-univers li { line-height: 1.8; font-size: 1.05rem; color: #ccc; }
+.grille-moodboard { display: grid; grid-template-columns: 1fr 1fr; column-gap: 15px; row-gap: 15px; align-content: center; }
+.img-moodboard { width: 100%; height: 400px; object-fit: cover; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); display: block; }
+
+/* ============================================ */
+/* SECTION STATISTIQUES & CRÉDIBILITÉ */
+/* ============================================ */
+.section-statistiques-crédibilité {
+  background-color: #F8F1E4;
+  padding: 20px 5% 30px 5%;
+  font-family: 'Poppins', sans-serif;
+}
+.conteneur-credibilite { max-width: 1200px; margin: 0 auto; }
+.titre-autorite { font-family: 'Playfair Display', serif; font-size: 3rem; color: #2C6B2F; text-align: center; margin-bottom: 20px; font-weight: 700; }
+.sous-titre-autorite { text-align: center; color: #D8A39D; font-size: 1.2rem; margin-bottom: var(--titre-gap); font-weight: 500; }
+.grille-kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; }
+.carte-reseau { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 15px 40px rgba(44,107,47,0.08); text-align: center; transition: transform 0.3s ease; }
+.carte-reseau:hover { transform: translateY(-10px); }
+.conteneur-img-capture { width: 100%; height: 350px; overflow: hidden; }
+.img-capture { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.info-abonnés { font-size: 1.1rem; color: #2C6B2F; font-weight: bold; margin: 20px 0; }
+.bouton-reseau { display: inline-block; background-color: #2C6B2F; color: white; text-decoration: none; padding: 12px 30px; border-radius: 30px; margin-bottom: 25px; font-weight: 600; transition: background-color 0.3s ease; }
+.bouton-reseau:hover { background-color: #D8A39D; }
+.zone-collaboration { text-align: center; background: white; padding: 60px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
+.zone-collaboration .titre-collaboration { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: #2C6B2F; margin-bottom: 40px; }
+.grille-partenaire { display: flex; justify-content: center; align-items: center; gap: 30px; margin-bottom: 30px; }
+.logo-partenaire { height: 80px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+.texte-partenaire { font-size: 1.1rem; color: #333; font-weight: 500; }
+.phrase-reassurance { color: #D8A39D; font-style: italic; font-size: 1rem; max-width: 800px; margin: 0 auto; line-height: 1.6; }
+
+/* ============================================ */
+/* SECTION PROCESS / TIMELINE */
+/* ============================================ */
+.section-process {
+  padding: 60px 5% 0px 5%;
+  background-color: #F8F1E4;
+}
+.timeline-collaboration {
+  position: relative;
+  max-width: 800px; margin: 40px auto;
+  padding-left: 30px;
+  border-left: 2px solid rgba(216,163,157,0.4);
+}
+.timeline-item { position: relative; margin-bottom: 40px; padding-left: 40px; }
+.timeline-icon {
+  position: absolute; left: -46px; top: 0;
+  width: 30px; height: 30px;
+  background: #F8F1E4;
+  border: 2px solid #D8A39D;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 14px; z-index: 2; color: #2C6B2F;
+}
+.step-title { color: #D8A39D; font-size: 1.4rem; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; font-weight: bold; }
+.step-text { color: #2C6B2F; line-height: 1.7; font-size: 1rem; }
+.step-text strong { color: #2C6B2F; border-bottom: 1px solid #D8A39D; }
+.process-footer-benefits { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 40px; }
+.benefit-tag { background: rgba(216,163,157,0.1); border: 1px solid rgba(216,163,157,0.3); padding: 10px 20px; border-radius: 50px; color: #D8A39D; font-size: 0.9rem; font-weight: bold; }
+
+/* ============================================ */
+/* SECTION TARIFS */
+/* ============================================ */
+.section-tarifs-globale {
+  background-color: #F8F1E4;
+  padding: 60px 5% 30px 5%;
+  color: #2C6B2F;
+  text-align: center;
+}
+.grille-tarifs-premium {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 30px; padding: 0 20px; align-items: stretch;
+}
+.carte-tarif {
+  background: #ffffff;
+  border: 1px solid rgba(44,107,47,0.1);
+  border-radius: 30px; padding: 40px 30px;
+  transition: all 0.4s ease;
+  position: relative; display: flex;
+flex-direction: column; justify-content: space-between; align-items: stretch;
+box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+.card-glow-green:hover { border-color: #2C6B2F; box-shadow: 0 15px 40px rgba(44,107,47,0.15); transform: translateY(-10px); }
+.card-glow-pink:hover  { border-color: #D8A39D; box-shadow: 0 15px 40px rgba(216,163,157,0.15); transform: translateY(-10px); }
+.prix-display { font-size: 1.6rem; font-weight: 800; margin: 20px 0; color: #2C6B2F; }
+.details-prix { margin: 25px 0; text-align: left; border-top: 1px solid rgba(44,107,47,0.1); padding-top: 20px; }
+.prix-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.85rem; color: #555; }
+.prix-row strong { color: #2C6B2F; }
+.liste-avantages li { font-size: 0.85rem; margin-bottom: 10px; color: #444; }
+.btn-outline { border: 1px solid #2C6B2F; color: #2C6B2F; }
+.phrase-unique-tarifs {
+  margin-top: 50px; margin-bottom: 0;
+  font-size: 0.95rem; color: #2C6B2F;
+  font-style: italic; padding: 0 20px;
+  display: block; text-align: center;
+}
+/* Supprime l'espace fantôme entre usage-note et le bouton */
+.usage-note {
+  font-size: 0.85rem;
+  color: #2C6B2F;
+  margin-top: auto;
+  margin-bottom: 10px;
+  text-align: center;
+}
+/* Boutons tarifs */
+.btn-tarif {
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+  font-family: 'Poppins', sans-serif;
+}
+.btn-green {
+  background-color: transparent;
+  border: 2px solid #2d4a22;
+  color: #2d4a22;
+}
+.btn-pink {
+  background-color: transparent;
+  border: 2px solid #2C6B2F;
+  color: #2C6B2F;
+}
+.btn-green:hover, .btn-pink:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+
+/* ============================================ */
+/* SECTION CONTACT */
+/* ============================================ */
+.section-contact {
+  width: 100%;
+  padding: 20px 5% 60px 5%;
+  background-color: #F8F1E4;
+  font-family: 'Poppins', sans-serif;
+}
+.section-contact .conteneur-titre-section .grand-titre-contact {
+  color: #D8A39D;
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 40px;
+}
+.conteneur-contact {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: start;
+}
+.colonne-cta { padding-right: 40px; }
+.titre-contact { font-family: 'Poppins', sans-serif; font-size: 2.5rem; font-weight: 600; color: #2C6B2F; line-height: 1.2; margin-bottom: 30px; }
+.texte-cta { font-size: 1.1rem; color: #2C6B2F; line-height: 1.8; margin-bottom: 40px; opacity: 0.9; }
+.infos-contact { display: flex; flex-direction: column; gap: 20px; }
+.info-item { display: flex; flex-direction: column; gap: 5px; }
+.info-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; color: #D8A39D; font-weight: 600; }
+.info-lien, .info-valeur { font-size: 1rem; color: #2C6B2F; text-decoration: none; transition: color 0.3s ease; }
+.info-lien:hover { color: #D8A39D; }
+.colonne-formulaire { background: #F8F1E4; padding: 40px; border-radius: 20px; }
+.formulaire-contact { display: flex; flex-direction: column; gap: 25px; }
+.groupe-champ { display: flex; flex-direction: column; gap: 8px; }
+.label-champ { font-size: 0.85rem; color: #2C6B2F; font-weight: 500; }
+.input-champ { width: 100%; padding: 14px 18px; border: 1.5px solid rgba(44,107,47,0.2); border-radius: 12px; background: #FFFFFF; font-family: 'Poppins', sans-serif; font-size: 0.95rem; color: #2C6B2F; transition: all 0.3s ease; outline: none; }
+.input-champ:focus { border-color: #D8A39D; box-shadow: 0 0 0 3px rgba(216,163,157,0.1); }
+.select-champ { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%232C6B2F' d='M6 8L1 3h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 18px center; padding-right: 45px; }
+.textarea-champ { resize: vertical; min-height: 120px; }
+.bouton-envoyer { width: 100%; padding: 16px 32px; background-color: #D8A39D; color: #FFFFFF; border: none; border-radius: 12px; font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; margin-top: 10px; }
+.bouton-envoyer:hover { background-color: #c9958f; transform: translateY(-2px); box-shadow: 0 10px 25px rgba(216,163,157,0.3); }
+.signature-formulaire { text-align: center; font-size: 0.8rem; color: #2C6B2F; opacity: 0.6; font-style: italic; margin-top: 10px; }
+
+/* ============================================ */
+/* MODALE DE CONTACT */
+/* ============================================ */
+.modale-contact {
+  display: none;
+  position: fixed; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: #F8F1E4;
+  padding: 30px; border-radius: 20px;
+  z-index: 1001; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  text-align: center; min-width: 300px;
+}
+.modale-contact.active { display: block; }
+.overlay-modale { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(44,107,47,0.4); backdrop-filter: blur(5px); z-index: 1000; }
+.overlay-modale.active { display: block; }
+.bouton-fermer { position: absolute; top: 20px; right: 25px; background: none; border: none; font-size: 1.8rem; color: #2C6B2F; cursor: pointer; transition: color 0.3s ease; }
+.bouton-fermer:hover { color: #D8A39D; }
+.titre-modale { font-family: 'Poppins', sans-serif; font-size: 1.5rem; color: #2C6B2F; text-align: center; margin-bottom: 10px; font-weight: 600; }
+.sous-titre-modale { text-align: center; color: #2C6B2F; opacity: 0.7; font-size: 0.95rem; margin-bottom: 30px; }
+.options-contact { display: flex; flex-direction: column; gap: 15px; }
+.modale-contact .options-contact .option-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 80px;
+  height: auto;
+  margin: 8px 0;
+  padding: 16px 20px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.option-whatsapp { background: #25D366; color: white; }
+.option-email    { background: #E29E94; color: white; }
+.modale-contact .options-contact .option-btn .sous-texte-option {
+  margin-top: auto;
+  display: block;
+  padding-top: 8px;
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+/* ============================================ */
+/* HARMONISATION TITRES */
+/* ============================================ */
+.titre-section,
+.grand-titre-section,
+.titre-equipement,
+.titre-adn,
+.titre-kezaco,
+.titre-collaboration,
+.section-contact h2 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* ============================================ */
+/* BOUTONS CTA GÉNÉRIQUES */
+/* ============================================ */
+.conteneur-cta { text-align: center; margin-top: 40px; }
+.bouton-cta { display: inline-block; padding: 1.2rem 2.5rem; background-color: var(--couleur-titres); color: white; text-decoration: none; font-weight: 600; border-radius: 50px; transition: var(--transition-rapide); box-shadow: 0 10px 20px rgba(216,163,157,0.2); }
+.bouton-cta:hover { background-color: var(--couleur-texte); transform: scale(1.05); }
+
+/* ============================================ */
+/* RESPONSIVE */
+/* ============================================ */
+@media screen and (max-width: 992px) {
+  .section-moi, .layout-noorahsphere { grid-template-columns: 1fr; text-align: center; }
+  .contenu-texte-moi, .equation-nom { text-align: left; }
+  .titre-moi, .titre-adn { font-size: 2.2rem; }
+  .visual-nexus { height: 350px; margin-top: 50px; }
+  .conteneur-contact { grid-template-columns: 1fr; gap: 60px; }
+  .colonne-cta { padding-right: 0; text-align: center; }
+  .infos-contact { align-items: center; }
+  .titre-contact { font-size: 2rem; }
+  .conteneur-spheres { grid-template-columns: 1fr; }
+  .carte-sphere { height: 450px; }
+  .grille-kpis { grid-template-columns: 1fr; }
+  .titre-autorite { font-size: 2.2rem; }
+  .bento-container { grid-template-columns: 1fr; }
+  .bento-large, .bento-tall { grid-column: span 1; grid-row: span 1; }
+  .points-cles-bar { flex-direction: column; align-items: center; gap: 15px; }
+  .conteneur-univers { grid-template-columns: 1fr; }
+  .grille-moodboard { row-gap: 15px; }
+  .skills-split-container { flex-direction: column; }
+  .grille-equipement { grid-template-columns: repeat(2, 1fr); }
+  .grille-tarifs-premium { grid-template-columns: 1fr; }
+  .z-pattern-row, .z-pattern-row.reverse { flex-direction: column; text-align: center; }
+  .duel-container { flex-direction: column; }
+  .piliers-ugc { grid-template-columns: 1fr; }
+}
+@media screen and (max-width: 768px) {
+  .navigation-principale { display: none; }
+  .titre-principal-hero { font-size: clamp(1.5rem, 6vw, 2.2rem); }
+
+  /* Cache la version PC, affiche la version mobile */
+  .section-hero-pc { display: none; }
+  .section-hero-mobile {
+    display: block;
+    height: 100svh;
+  }
+  .video-hero-mobile {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    filter: brightness(0.8);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .section-contact { padding: 20px 5% 60px 5%; }
+  .colonne-formulaire { padding: 30px 25px; }
+  .titre-contact { font-size: 1.6rem; }
+  .modale-contact { padding: 40px 30px; }
+}
+/* --- CONFIGURATION RESPONSIVE (MOBILE & TABLETTE) --- */
+
+@media (max-width: 1024px) {
+    .grille-tarifs-premium {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 10px;
+    }
+    .carte-tarif {
+        min-height: auto;
+        width: 95% !important;
+        margin: 0 auto !important;
+    }
+    .conteneur-contact {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .colonne-info, .colonne-formulaire {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+@media (max-width: 768px) {
+    .conteneur-titre-section h2 {
+        font-size: 1.8rem;
+        text-align: center;
+    }
+    .input-champ, .textarea-champ {
+        font-size: 16px !important;
+    }
+    .btn-tarif {
+        width: 100%;
+        padding: 15px;
+    }
+}
+  </style>
+</head>
+<body>
+
+<header class="header-principal" id="headerPrincipal">
+  <a href="#accueil-info" class="logo-marque">
+    <img src="assets/images/logo-nom.webp" alt="NoorahSPHÈRE" class="logo-image">
+  </a>
+  <nav class="navigation-principale">
+    <a href="#accueil-info" class="lien-navigation">Accueil</a>
+    <a href="#videos" class="lien-navigation">Vidéos</a>
+    <a href="#images" class="lien-navigation">Images</a>
+    <a href="#moi" class="lien-navigation">Moi</a>
+    <a href="#noorahsphere" class="lien-navigation">NoorahSPHÈRE ?</a>
+    <a href="#mes-spheres" class="lien-navigation">Mes 3 SPHÈRES</a>
+    <a href="#statistiques" class="lien-navigation">Statistiques & Crédibilité</a>
+    <a href="#tarifs" class="lien-navigation">Services & Tarifs</a>
+    <a href="#contact" class="lien-navigation">Contact</a>
+  </nav>
+</header>
+
+<!-- HÉRO PC (caché sur mobile) -->
+<section class="section-hero-pc" id="hero-video">
+  <div class="conteneur-media-hero">
+    <video class="video-fond-hero" autoplay loop muted playsinline preload="metadata">
+      <source src="assets/videos/Video-Hero-pc.webm" type="video/webm">
+    </video>
+  </div>
+  <div class="overlay-hero"></div>
+  <div class="contenu-hero">
+    <span class="phrase-girly">AKÕRY ABY DAHOLO</span>
+    <h1 class="titre-principal-hero" style="font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.1;">
+      UGC Creator en Beauté Consciente <br> & Éco-Responsable
+    </h1>
+  </div>
+</section>
+
+<!-- HÉRO MOBILE (caché sur PC) -->
+<section class="section-hero-mobile">
+  <video class="video-hero-mobile" autoplay loop muted playsinline preload="metadata">
+    <source src="assets/videos/Video-Hero-mobile.webm" type="video/webm">
+  </video>
+  <div class="overlay-hero"></div>
+  <div class="contenu-hero">
+    <span class="phrase-girly">AKÕRY ABY DAHOLO</span>
+    <h1 class="titre-principal-hero" style="font-size: clamp(1.8rem, 6vw, 2.5rem); line-height: 1.1;">
+      UGC Creator en Beauté Consciente <br> & Éco-Responsable
+    </h1>
+  </div>
+</section>
+
+<!-- ACCUEIL INFO -->
+<section class="section-accueil-info" id="accueil-info">
+  <h2 class="titre-accueil-grand">Passionnée par la Beauté 🩷 et l'audio visuel 🎥📸</h2>
+  <div class="texte-accueil-vert">
+J'accompagne les marques visionnaires 🔎 et éco-responsables 🌍 comme la vôtre 🥰 à mettre en lumière vos produits et services efficaces ✨, sûrs 💯 et respectueux de la santé des consommateurs ⚕️ et de l'environnement 🌱.
+Je crée des contenus 🎥📸 authentiques 🤍, stratégiques 🎯 et professionnels 🥇 qui renforcent votre crédibilité et inspirent confiance, engagement 🔗 et conversion ↗️.
+🌿 Je décrypte 🔎, je teste, j'explique 🎥📸.
+✨ Je transforme la confiance en conversion 💯.
+  </div>
+  <div class="certifications-ivoire">
+    <p>• Certifiée Formatrice Internationale ✔️</p>
+    <p>• Doctorante en Sciences 🔎, Environnement 🌍🌿🐾 & Développement Durable ♻️</p>
+  </div>
+</section>
+
+<!-- VIDÉOS -->
+<section class="section-contenu" id="videos">
+  <div class="conteneur-titre-section">
+    <h2 class="titre-section">Mes Réalisations UGC</h2>
+    <p class="sous-titre-section">Des contenus authentiques qui engagent</p>
+  </div>
+  <div class="grille-medias">
+    <div class="carte-media">
+      <video class="video-ugc" controls poster="assets/images/couverture1.webp" preload="none">
+        <source src="assets/videos/Video_1.webm" type="video/webm">
+      </video>
+      <div class="infos-media">
+        <h3 style="color: #D8A39D;">Beauté Consciente</h3>
+        <p style="color: #D8A39D;">Démo produit & Routine</p>
+      </div>
+    </div>
+    <div class="carte-media">
+      <video class="video-ugc" controls poster="assets/images/couverture2.webp" preload="none">
+        <source src="assets/videos/Video_2.webm" type="video/webm">
+      </video>
+      <div class="infos-media">
+        <h3>Éco-Responsable</h3>
+        <p>Routine gommage corps DIY</p>
+      </div>
+    </div>
+    <div class="carte-media">
+      <video class="video-ugc" controls poster="assets/images/couverture3.webp" preload="none">
+        <source src="assets/videos/Video_3.webm" type="video/webm">
+      </video>
+      <div class="infos-media">
+        <h3 style="color: #F8F1E4;">Lifestyle</h3>
+        <p style="color: #F8F1E4;">Unboxing</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTOS -->
+<section class="section-contenu" id="images">
+  <div class="conteneur-titre-section">
+    <h2 class="titre-section">Galerie Photos</h2>
+    <p class="sous-titre-section">L'esthétique visuelle NoorahSPHÈRE</p>
+  </div>
+  <div class="grille-medias">
+    <div class="carte-media">
+      <div class="conteneur-animation-photo">
+        <div class="rail-photos">
+          <img src="assets/images/image_1.webp" alt="Shooting Beauté 1" loading="lazy">
+          <img src="assets/images/image_2.webp" alt="Shooting Beauté 2" loading="lazy">
+          <img src="assets/images/image_3.webp" alt="Shooting Beauté 3" loading="lazy">
+        </div>
+      </div>
+      <div class="infos-media"><h3 style="color: #D8A39D !important;">Texture & Teint</h3></div>
+    </div>
+    <div class="carte-media">
+      <div class="conteneur-animation-photo">
+        <div class="rail-photos" style="animation-delay: -2s;">
+          <img src="assets/images/image_4.webp" alt="Focus Éco-Design 1" loading="lazy">
+          <img src="assets/images/image_5.webp" alt="Focus Éco-Design 2" loading="lazy">
+          <img src="assets/images/image_6.webp" alt="Focus Éco-Design 3" loading="lazy">
+        </div>
+      </div>
+      <div class="infos-media"><h3>Focus Éco-Design</h3></div>
+    </div>
+    <div class="carte-media">
+      <div class="conteneur-animation-photo">
+        <div class="rail-photos" style="animation-delay: -4s;">
+          <img src="assets/images/image_7.webp" alt="Lifestyle 1" loading="lazy">
+          <img src="assets/images/image_8.webp" alt="Lifestyle 2" loading="lazy">
+          <img src="assets/images/image_9.webp" alt="Lifestyle 3" loading="lazy">
+        </div>
+      </div>
+      <div class="infos-media"><h3 style="color: #F8F1E4 !important;">Ambiance Zen</h3></div>
+    </div>
+  </div>
+</section>
+
+<!-- MOI -->
+<section class="section-moi" id="moi">
+  <div class="contenu-texte-moi">
+    <h2 class="titre-moi">L'Esprit derrière NoorahSPHÈRE 🩷🔗</h2>
+    <span class="prenom-moi">Je suis Jery Felaniaina Sarobidy Noorah Marielle</span>
+    <p class="paragraphe-moi">
+      Créatrice UGC et fondatrice de NoorahSPHÈRE, j'évolue à la convergence précise de la science 🧪, de la cosmétologie et de l'esthétique 🎥📸. Mon univers est une alliance stratégique 🎯 dédiée à Beauté Consciente 🩷🌿💚, où l'environnement est une valeur centrale.
+    </p>
+    <p class="paragraphe-moi">
+      Diplômée d'un Master en Sciences de l'Environnement & Développement Durable ♻️ et actuellement doctorante, mon parcours n'est pas linéaire. J'ai uni ma rigueur scientifique à une intuition esthétique aiguisée pour décrypter les formules ⚗️, éduquer 🌿 et transformer la simple confiance en conversion engagée 🔗🛍.
+    </p>
+    <p class="paragraphe-moi">
+      Pionnière de la niche Beauté Consciente à Madagascar 📍, mon UGC ne se limite pas à présenter un produit. Il crée de la valeur en valorisant des marques éthiques, clean et naturelles, qu'elles soient locales ou internationales, en mettant toujours en lumière leur efficacité réelle 💯⚕️🌍.
+    </p>
+  </div>
+  <div class="carte-media">
+    <div class="conteneur-animation-photo-moi">
+      <div class="rail-photos-moi">
+        <img src="assets/images/photo_moi_1.webp" alt="Portrait de Jery 1" loading="lazy">
+        <img src="assets/images/photo_moi_2.webp" alt="Portrait de Jery 2" loading="lazy">
+        <img src="assets/images/photo_moi_3.webp" alt="Portrait de Jery 3" loading="lazy">
+        <img src="assets/images/photo_moi_4.webp" alt="Portrait de Jery 4" loading="lazy">
+        <img src="assets/images/photo_moi_5.webp" alt="Portrait de Jery 5" loading="lazy">
+        <img src="assets/images/photo_moi_6.webp" alt="Portrait de Jery 6" loading="lazy">
+        <img src="assets/images/photo_moi_7.webp" alt="Portrait de Jery 7" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="section-skills">
+  <div class="conteneur-intermediaire skills-split-container">
+    <div class="skills-left-content">
+      <h2 class="titre-section align-gauche">Mon Expertise & Mes Outils (Skills)</h2>
+      <p class="section-desc">De la conception stratégique à la post-production, je combine créativité, technologie et authenticité pour des contenus qui convertissent.</p>
+      <div class="liste-piliers-skills">
+        <div class="pilier-item">
+          <div class="skill-text-wrap">
+            <h3 class="skill-title">Écriture de Scripts Captivants</h3>
+            <p class="skill-desc">Rédaction de scripts basés sur la psychologie de vente, hooks optimisés par l'IA et s'inspirant des tendances globales des meilleurs créateurs étrangers.</p>
+          </div>
+        </div>
+        <div class="pilier-item">
+          <div class="skill-text-wrap">
+            <h3 class="skill-title">Analyse de Tendances UGC</h3>
+            <p class="skill-desc">Identification rapide des formats viraux et adaptation créative de concepts innovants pour capturer l'attention et maximiser l'engagement.</p>
+          </div>
+        </div>
+        <div class="pilier-item">
+          <div class="skill-text-wrap">
+            <h3 class="skill-title">Montage Dynamique</h3>
+            <p class="skill-desc">Maîtrise professionnelle de CapCut pour des montages fluides, sound design percutant et sous-titres optimisés pour retenir l'attention.</p>
+          </div>
+        </div>
+        <div class="pilier-item">
+          <div class="skill-text-wrap">
+            <h3 class="skill-title">L'Authenticité (Face-Camera Confidence)</h3>
+            <p class="skill-desc">Aisance naturelle et confiance devant l'objectif pour livrer des messages sincères, créant une connexion de confiance immédiate.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="skills-right-visuals">
+      <h3 class="titre-equipement">Mon Équipement Professionnel</h3>
+      <div class="grille-equipement">
+        <div class="card-equipement">
+          <img src="assets/images/skills_image_1.webp" alt="Xiaomi Poco X7 Pro" class="equipement-img" loading="lazy">
+          <p class="equipement-text-under">Téléphone : Xiaomi Poco X7 Pro</p>
+        </div>
+        <div class="card-equipement">
+          <img src="assets/images/skills_image_2.webp" alt="Ring light professionnel" class="equipement-img" loading="lazy">
+          <p class="equipement-text-under">Ring light professionnel</p>
+        </div>
+        <div class="card-equipement">
+          <img src="assets/images/skills_image_3.webp" alt="Trépied intelligent avec tracking" class="equipement-img" loading="lazy">
+          <p class="equipement-text-under">Trépied intelligent tracking auto + double LED</p>
+        </div>
+        <div class="card-equipement">
+          <img src="assets/images/skills_image_4.webp" alt="CapCut App" class="equipement-img" loading="lazy">
+          <p class="equipement-text-under">Capcut (Montage)</p>
+        </div>
+        <div class="card-equipement">
+          <img src="assets/images/skills_image_5.webp" alt="Canva Pro App" class="equipement-img" loading="lazy">
+          <p class="equipement-text-under">Canva Pro (Visuels)</p>
+        </div>
+        <div class="card-equipement">
+          <img src="assets/images/skills_image_6.webp" alt="Lightroom App" class="equipement-img" loading="lazy">
+          <p class="equipement-text-under">Lightroom (Édition)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOORAHSPHÈRE ADN -->
+<section class="section-noorahsphere-concept" id="noorahsphere">
+  <div class="layout-noorahsphere">
+    <div class="adn-texte">
+      <h2 class="titre-adn">L'ADN de NoorahSPHÈRE : <br>Le Nexus de la Beauté Consciente</h2>
+      <p>NoorahSPHÈRE n'est pas qu'un portfolio, c'est une <strong>méthodologie rigoureuse</strong> conçue pour répondre au défi majeur des marques éthiques : <em>Comment convertir sans compromettre la vérité ?</em></p>
+      <div class="equation-nom">
+        <div class="equation-item"><strong>Noo →</strong> L'Humain, placé au cœur de l'écosystème.</div>
+        <div class="equation-item"><strong>Noorah →</strong> La Lumière qui révèle l'éclat de vos actifs.</div>
+        <div class="equation-item"><strong>SPHÈRE →</strong> L'Équilibre global entre efficacité chimique et respect écologique.</div>
+      </div>
+      <p class="promesse-marque">"Ma mission est de réduire le scepticisme des consommateurs par la preuve scientifique, tout en déclenchant le désir par une esthétique cinématographique."</p>
+    </div>
+    <div class="visual-nexus">
+      <div class="centre-lumiere"></div>
+      <div class="triangle-container">
+        <div class="point-nexus science">
+          <span style="font-size: 1.5rem;">🧪</span>
+          <span>Science</span>
+          <small>Rigueur & Analyse</small>
+        </div>
+        <div class="point-nexus esthetique">
+          <span style="font-size: 1.5rem;">🎥</span>
+          <span>Esthétique</span>
+          <small>Intuition & Créativité</small>
+        </div>
+        <div class="point-nexus ethique">
+          <span style="font-size: 1.5rem;">🌱</span>
+          <span>Éthique</span>
+          <small>Engagement</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="transition-footer">
+    <p>Cette vision se déploie à travers <strong>trois dimensions stratégiques</strong> que j'appelle mes Sphères d'influence.</p>
+  </div>
+</section>
+
+<!-- MES 3 SPHÈRES -->
+<section class="section-mes-spheres" id="mes-spheres">
+  <div class="header-section-standard">
+    <h2 class="grand-titre-section">Mes 3 SPHÈRES d'influence</h2>
+    <p class="phrase-presentation-section">Trois dimensions uniques pour un impact visuel global et stratégique.</p>
+  </div>
+  <div class="conteneur-spheres">
+    <article class="carte-sphere">
+      <div class="conteneur-defilement-horizontal">
+        <div class="rail-horizontal">
+          <img src="assets/images/GlowSPHÈRE_image_1.webp" alt="Glow 1" class="media-horizontal" loading="lazy">
+          <img src="assets/images/GlowSPHÈRE_image_2.webp" alt="Glow 2" class="media-horizontal" loading="lazy">
+          <img src="assets/images/GlowSPHÈRE_image_3.webp" alt="Glow 3" class="media-horizontal" loading="lazy">
+          <img src="assets/images/GlowSPHÈRE_image_4.webp" alt="Glow 4" class="media-horizontal" loading="lazy">
+          <img src="assets/images/GlowSPHÈRE_image_5.webp" alt="Glow 5" class="media-horizontal" loading="lazy">
+          <img src="assets/images/GlowSPHÈRE_image_6.webp" alt="Glow 6" class="media-horizontal" loading="lazy">
+          <img src="assets/images/GlowSPHÈRE_image_7.webp" alt="Glow 7" class="media-horizontal" loading="lazy">
+        </div>
+      </div>
+      <div class="overlay-sphere"></div>
+      <div class="contenu-texte-sphere">
+        <h3 class="titre-sphere" style="color: #FFB7C5;">GlowSPHÈRE</h3>
+        <p class="sous-titre-sphere">Beauté Consciente Efficace</p>
+        <p class="description-sphere">Skincare, bodycare, haircare, DIY naturels, comparatifs</p>
+      </div>
+    </article>
+    <article class="carte-sphere">
+      <div class="conteneur-defilement-horizontal">
+        <div class="rail-horizontal">
+          <img src="assets/images/GreenSPHÈRE_image_1.webp" alt="Green 1" class="media-horizontal" loading="lazy">
+          <img src="assets/images/GreenSPHÈRE_image_2.webp" alt="Green 2" class="media-horizontal" loading="lazy">
+          <img src="assets/images/GreenSPHÈRE_image_3.webp" alt="Green 3" class="media-horizontal" loading="lazy">
+          <img src="assets/images/GreenSPHÈRE_image_4.webp" alt="Green 4" class="media-horizontal" loading="lazy">
+          <img src="assets/images/GreenSPHÈRE_image_5.webp" alt="Green 5" class="media-horizontal" loading="lazy">
+          <img src="assets/images/GreenSPHÈRE_image_6.webp" alt="Green 6" class="media-horizontal" loading="lazy">
+          <img src="assets/images/GreenSPHÈRE_image_7.webp" alt="Green 7" class="media-horizontal" loading="lazy">
+          <img src="assets/images/GreenSPHÈRE_image_8.webp" alt="Green 8" class="media-horizontal" loading="lazy">
+        </div>
+      </div>
+      <div class="overlay-sphere"></div>
+      <div class="contenu-texte-sphere">
+        <h3 class="titre-sphere" style="color: #95b391;">GreenSPHÈRE</h3>
+        <p class="sous-titre-sphere">Éco-responsabilité & Consommation</p>
+        <p class="description-sphere">Zéro déchet, ingrédients locaux, marques malgaches, packaging éthique</p>
+      </div>
+    </article>
+    <article class="carte-sphere">
+      <div class="conteneur-defilement-horizontal">
+        <div class="rail-horizontal">
+          <video class="media-horizontal" autoplay loop muted playsinline preload="metadata">
+            <source src="assets/videos/VibeSPHÈRE_video_1.webm" type="video/webm">
+          </video>
+          <video class="media-horizontal" autoplay loop muted playsinline preload="metadata">
+            <source src="assets/videos/VibeSPHÈRE_video_2.webm" type="video/webm">
+          </video>
+          <img src="assets/images/VibeSPHÈRE_image_1.webp" alt="Vibe" class="media-horizontal" loading="lazy">
+          <img src="assets/images/VibeSPHÈRE_image_2.webp" alt="Vibe" class="media-horizontal" loading="lazy">
+        </div>
+      </div>
+      <div class="overlay-sphere"></div>
+      <div class="contenu-texte-sphere">
+        <h3 class="titre-sphere" style="color: #F8F1E4;">VibeSPHÈRE</h3>
+        <p class="sous-titre-sphere">Lifestyle Solaire & Minimaliste</p>
+        <p class="description-sphere">Mini-vlogs, humour, BTS UGC, routines quotidiennes, inspirations</p>
+      </div>
+    </article>
+    <p class="phrase-conclusion-spheres">🎯 Ces trois sphères se complètent pour offrir des contenus cohérents, stratégiques, éducatifs et émotionnels, valorisant vos produits et/ou services et votre marque 💯.</p>
+  </div>
+</section>
+
+<!-- UGC KEZACO -->
+<section id="ugc-kezaco" class="section-kezaco">
+  <div class="header-section-standard">
+    <h2 class="grand-titre-section">UGC KEZACO ?</h2>
+    <p class="phrase-presentation-section">Comprendre la <strong>Publicité Naturelle</strong> : l'atout stratégique qui révolutionne le digital dans le monde.</p>
+  </div>
+  <div class="conteneur-intermediaire">
+    <div class="z-pattern-row">
+      <div class="z-text">
+        <h3 class="kezaco-subtitle">C'est quoi l'UGC ?</h3>
+        <p>L'UGC (*User Generated Content*) est un contenu créé par un utilisateur pour une marque. Contrairement à une publicité classique, c'est un visage humain qui parle d'un vrai produit.</p>
+        <div class="duel-container">
+          <div class="card-duel influence">
+            <h4>L'Influenceur</h4>
+            <p>Il vend sa propre image (Lifestyle). L'influenceur est la <strong>Star</strong>.</p>
+            <span class="duel-tag">Coûteux • Audience Passive</span>
+          </div>
+          <div class="card-duel ugc">
+            <h4>Le Créateur UGC</h4>
+            <p>Il vend <strong>votre produit</strong>. Le client est la <strong>Star</strong>.</p>
+            <span class="duel-tag">Authentique • Booste les Ventes</span>
+          </div>
+        </div>
+      </div>
+      <div class="z-visual">
+        <div class="stat-highlight">
+          <span class="rose-accent">X4</span>
+          <p>D'augmentation du taux de clic (CTR) par rapport aux pubs classiques.</p>
+        </div>
+      </div>
+    </div>
+    <div class="z-pattern-row reverse">
+      <div class="z-text">
+        <h3 class="kezaco-subtitle">Pourquoi maintenant ? (Stats 2026)</h3>
+        <ul class="liste-stats">
+          <li><i class="icon-green">📈</i> <strong>+20% de conversions</strong> par rapport aux contenus classiques.</li>
+          <li><i class="icon-green">🤝</i> <strong>90% des clients</strong> font plus confiance à l'UGC qu'à la pub TV.</li>
+          <li><i class="icon-green">📍</i> <strong>Madagascar</strong> 4,15 millions d'utilisateurs actifs sur les réseaux sociaux. Être pionnier ici est un avantage énorme.</li>
+        </ul>
+      </div>
+      <div class="z-visual">
+        <div class="stat-box-main">
+          <span class="rose-accent">+92%</span>
+          <p>de confiance des consommateurs envers l'UGC.</p>
+        </div>
+      </div>
+    </div>
+    <div class="piliers-ugc">
+      <div class="pilier-card">
+        <div class="pilier-icon">🛡</div>
+        <h4>CONFIANCE</h4>
+        <p>L'authenticité crée un lien direct que nulle agence ne peut simuler.</p>
+      </div>
+      <div class="pilier-card">
+        <div class="pilier-icon">💰</div>
+        <h4>ÉCONOMIE</h4>
+        <p>Moins cher qu'une agence de pub, avec un meilleur retour sur investissement.</p>
+      </div>
+      <div class="pilier-card">
+        <div class="pilier-icon">🚀</div>
+        <h4>CONVERSION</h4>
+        <p>Optimisé pour TikTok, Réels, FB Ads et Instagram pour transformer les vues en ventes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POURQUOI MOI -->
+<section id="pourquoi-moi" class="section-pourquoi">
+  <div class="header-section-standard" style="padding-bottom: var(--titre-gap);">
+    <h2 class="grand-titre-section" style="color: #2C6B2F;">Pourquoi collaborer avec moi ?</h2>
+    <p class="phrase-presentation-section" style="color: #2C6B2F;">Voici pourquoi votre investissement est <strong>sécurisé</strong> et orienté vers une croissance réelle.</p>
+  </div>
+  <div class="conteneur-intermediaire bento-container">
+    <div class="bento-card bento-large card-green">
+      <div class="bento-content">
+        <span class="bento-icon">🎯</span>
+        <h3>Vision ROI-Centric & Ventes</h3>
+        <p>Je ne crée pas de simples vidéos, je crée des <strong>actifs marketing</strong> conçus pour convertir. Mon approche "Confiance = Ventes" transforme l'authenticité en revenus mesurables.</p>
+      </div>
+    </div>
+    <div class="bento-card bento-tall card-pink">
+      <div class="bento-content">
+        <span class="bento-icon">🤍</span>
+        <h3>Expertise Scientifique Rare</h3>
+        <p>Décryptage des ingrédients et analyse de l'efficacité. Je propose un positionnement unique : <strong>Beauté + Environnement</strong>, idéal pour les marques Bio et Clean Beauty.</p>
+        <div class="bento-tags"><span>#Pédagogie</span><span>#CleanBeauty</span></div>
+      </div>
+    </div>
+    <div class="bento-card card-green">
+      <div class="bento-content">
+        <span class="bento-icon">🌿</span>
+        <h3>Authenticité Garantie</h3>
+        <p>Une immersion réelle de 2 semaines minimum pour parler de votre produit avec une <strong>vraie expertise utilisateur</strong>.</p>
+      </div>
+    </div>
+    <div class="bento-card card-pink">
+      <div class="bento-content">
+        <span class="bento-icon">🎥</span>
+        <h3>Qualité Technique Premium</h3>
+        <p>Captation 4K et montage dynamique aux standards internationaux. <strong>Science + Storytelling = Haute rétention.</strong></p>
+      </div>
+    </div>
+    <div class="bento-card card-green">
+      <div class="bento-content">
+        <span class="bento-icon">📍</span>
+        <h3>Pionnière à Madagascar</h3>
+        <p>Le marché malgache est en plein essor. Profitez d'un positionnement pionnier en <strong>Beauté Consciente</strong> pour dominer votre secteur.</p>
+      </div>
+    </div>
+    <div class="bento-card card-pink">
+      <div class="bento-content">
+        <span class="bento-icon">⚡</span>
+        <h3>Agilité & Réactivité</h3>
+        <p>Communication transparente et respect strict des délais pour une <strong>sérénité totale</strong> dans votre gestion de projet.</p>
+      </div>
+    </div>
+  </div>
+  <div class="points-cles-bar">
+    <div class="point-item"><strong>Authenticité</strong> 🤍</div>
+    <div class="point-item"><strong>Stratégie</strong> 📈</div>
+    <div class="point-item"><strong>Éducation</strong> 🌿</div>
+    <div class="point-item"><strong>Engagement</strong> ⚡</div>
+  </div>
+</section>
+
+<!-- UNIVERS VISUEL -->
+<section class="section-univers-visuel" id="univers-visuel">
+  <div class="conteneur-univers">
+    <div class="texte-univers">
+      <h2 class="titre-univers">🌿 UNIVERS VISUEL — NOORAHSPHÈRE</h2>
+      <div class="categorie-univers">
+        <h3 class="titre-categorie">🎨 Palette</h3>
+        <p><strong>Blanc vanille · Vert forêt intense · Rose vanille poudrée</strong></p>
+        <ul>
+          <li><strong>Le blanc vanille :</strong> pureté et élégance botanique.</li>
+          <li><strong>Le vert forêt :</strong> reflet des matières végétales.</li>
+          <li><strong>Le rose vanille :</strong> incarnation de la féminité et de la symbiose.</li>
+        </ul>
+      </div>
+      <div class="categorie-univers">
+        <h3 class="titre-categorie">🖼 Moodboard</h3>
+        <p>Textures naturelles, lumière douce, plantes et gestes authentiques. Une ambiance slow et éco-responsable.</p>
+      </div>
+      <div class="categorie-univers">
+        <h3 class="titre-categorie">🌱 Style artistique</h3>
+        <p>Minimalisme chaleureux, focus sur les textures et l'efficacité consciente.</p>
+      </div>
+      <div class="categorie-univers">
+        <h3 class="titre-categorie">✨ Logo</h3>
+        <p>Une sphère organique où la nature et la féminité se rencontrent pour un écosystème qui respire la beauté.</p>
+      </div>
+    </div>
+    <div class="grille-moodboard">
+      <img src="assets/images/moodboard_1.webp" alt="Moodboard 1" class="img-moodboard" loading="lazy">
+      <img src="assets/images/moodboard_2.webp" alt="Moodboard 2" class="img-moodboard" loading="lazy">
+      <img src="assets/images/moodboard_3.webp" alt="Moodboard 3" class="img-moodboard" loading="lazy">
+      <img src="assets/images/moodboard_4.webp" alt="Moodboard 4" class="img-moodboard" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- STATISTIQUES -->
+<section class="section-statistiques-crédibilité" id="statistiques">
+  <div class="conteneur-credibilite">
+    <h2 class="titre-autorite">L'Autorité Scientifique au service de votre Marque</h2>
+    <p class="sous-titre-autorite">Mes Chiffres & Ma Crédibilité (Mars 2026)</p>
+    <div class="grille-kpis">
+      <div class="carte-reseau">
+        <div class="conteneur-img-capture">
+          <img src="assets/images/instagram_image.webp" alt="Capture d'écran Instagram NoorahSPHÈRE" class="img-capture" loading="lazy">
+        </div>
+        <p class="info-abonnés">📌 Instagram : 2 469 abonnés</p>
+        <a href="https://www.instagram.com/noorahsphere?igsh=MWNxOG1kZm1ud2Q2bA==" target="_blank" class="bouton-reseau">Vérifier le profil 🔗</a>
+      </div>
+      <div class="carte-reseau">
+        <div class="conteneur-img-capture">
+          <img src="assets/images/tiktok_image.webp" alt="Capture d'écran TikTok NoorahSPHÈRE" class="img-capture" loading="lazy">
+        </div>
+        <p class="info-abonnés">📌 TikTok : 5 325 abonnés</p>
+        <a href="https://www.tiktok.com/@noorahsphere?_r=1&_t=ZN-94satVXYxLq" target="_blank" class="bouton-reseau">Vérifier le profil 🔗</a>
+      </div>
+    </div>
+    <div class="zone-collaboration">
+      <h3 class="titre-collaboration">Collaboration Professionnelle</h3>
+      <div class="grille-partenaire">
+        <img src="assets/images/collab_image.webp" alt="Logo Renala Natural" class="logo-partenaire" loading="lazy">
+        <p class="texte-partenaire">⚗️ Renala Natural (gifting – contenus en échange de produits)</p>
+      </div>
+      <p class="phrase-reassurance">
+        <strong>Engagement qualité :</strong> Chaque collaboration bénéficie d'une analyse rigoureuse des actifs et d'une création de contenu basée sur des preuves scientifiques.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS / TIMELINE -->
+<section id="process-collaboration" class="section-process">
+  <div class="conteneur-intermediaire">
+    <div class="conteneur-titre-section">
+      <h2 class="titre-section">Votre Partenaire de Croissance : Les Coulisses de notre Collaboration</h2>
+      <p class="sous-titre-section">Une synergie stratégique de A à Z pour un impact visuel qui convertit vos prospects en ambassadeurs.</p>
+    </div>
+    <div class="timeline-collaboration">
+      <div class="timeline-item">
+        <div class="timeline-icon">🤝</div>
+        <div class="timeline-content">
+          <h3 class="step-title">01. Immersion & Stratégie (Onboarding)</h3>
+          <p class="step-text">Analyse de l'ADN de votre marque et de vos objectifs lors d'un brief WhatsApp ou sur site. <strong>Immersion réelle :</strong> j'utilise vos produits pendant minimum 2 semaines pour garantir une expertise authentique et une confiance totale dans le contenu final.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-icon">✨</div>
+        <div class="timeline-content">
+          <h3 class="step-title">02. Scripting & Storyboard Captivant</h3>
+          <p class="step-text">Rédaction de scripts à fort impact (Hooks & CTA) assistée par l'IA pour une pertinence internationale. Création d'un storyboard aligné sur vos valeurs : pédagogique, esthétique et engageant.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-icon">🎥</div>
+        <div class="timeline-content">
+          <h3 class="step-title">03. Tournage & Création Haute Fidélité</h3>
+          <p class="step-text">Captation 4K avec équipement professionnel (Xiaomi Poco X7 Pro, tracking auto, double LED). Mise en valeur esthétique de vos produits clean et éco-responsables pour un rendu premium et naturel.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-icon">🚀</div>
+        <div class="timeline-content">
+          <h3 class="step-title">04. Montage, Optimisation & Livraison</h3>
+          <p class="step-text">Édition dynamique sur CapCut et Storytelling captivant. <strong>Livraison de vos actifs prêts à l'emploi</strong> (environ 1 mois après signature). Inclut 3 révisions gratuites pour garantir la perfection de vos campagnes Ads.</p>
+        </div>
+      </div>
+    </div>
+    <div class="process-footer-benefits">
+      <div class="benefit-tag">✔️ Processus Premium & Rassurant</div>
+      <div class="benefit-tag">✔️ Garantie de Crédibilité (Usage Réel)</div>
+      <div class="benefit-tag">✔️ Contenus Optimisés pour la Conversion</div>
+    </div>
+  </div>
+</section>
+
+<!-- TARIFS -->
+<section class="section-tarifs-globale" id="tarifs">
+  <div class="conteneur-titre-section">
+    <h2 class="titre-section">Services & Tarifs</h2>
+    <p class="sous-titre-section">Une collaboration exclusive pour transformer votre vision en visuels impactants</p>
+  </div>
+  <div class="grille-tarifs-premium">
+    <div class="carte-tarif card-glow-green">
+      <div class="contenu-card-top">
+        <div class="badge-premium">PARTENARIAT INITIAL</div>
+        <div class="icon-tarif">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#2C6B2F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 12 20 22 4 22 4 12"></polyline>
+                <rect x="2" y="7" width="20" height="5"></rect>
+                <line x1="12" y1="22" x2="12" y2="7"></line>
+                <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
+                <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
+            </svg>
+        </div>
+        <h3>L'Expérience Découverte</h3>
+        <div class="prix-display">GIFTING UNIQUE</div>
+        <p class="description-card">Le test de confiance exclusif pour briser la méfiance et prouver la valeur de l'UGC sans risque financier.</p>
+        <ul class="liste-avantages">
+          <li><i class="check-green">✔</i> 2 Vidéos UGC & 2 Photos</li>
+          <li><i class="check-green">✔</i> Échange contre 2 produits</li>
+          <li><i class="check-green">✔</i> Qualité Premium garantie</li>
+          <li><i class="check-green">✔</i> Stratégie Beauté Consciente</li>
+        </ul>
+      </div>
+      <p class="usage-note">Utilisation libre pendant 3 mois</p>
+      <a href="#contact" class="btn-tarif btn-green">Initier le partenariat</a>
+    </div>
+    <div class="carte-tarif card-glow-pink populaire">
+      <div class="contenu-card-top">
+        <div class="badge-premium">MARCHÉ LOCAL (AR)</div>
+        <div class="icon-tarif">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#2C6B2F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+        </div>
+        <h3>Offre Croissance</h3>
+        <div class="prix-display">Dès 9 000Ar</div>
+        <p class="description-card">Des tarifs adaptés pour booster les marques locales avec un contenu impactant et authentique.</p>
+        <div class="details-prix">
+          <div class="prix-row"><span>Vidéo (Public)</span> <strong>dès 18 000Ar</strong></div>
+          <div class="prix-row"><span>Vidéo (Privé)</span> <strong>dès 40 000Ar</strong></div>
+          <div class="prix-row"><span>Photo (Public)</span> <strong>dès 9 000Ar</strong></div>
+          <div class="prix-row"><span>Photo (Privé)</span> <strong>dès 20 000Ar</strong></div>
+        </div>
+        <p class="usage-note">Utilisation libre pendant 6 mois</p>
+      </div>
+      <a href="#contact" class="btn-tarif btn-outline">Demander un devis</a>
+    </div>
+    <div class="carte-tarif card-glow-green">
+      <div class="contenu-card-top">
+        <div class="badge-premium">INTERNATIONAL (EUR)</div>
+        <div class="icon-tarif">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#2C6B2F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+        </div>
+        <h3>Offre Prestige</h3>
+        <div class="prix-display">Dès 8€</div>
+        <p class="description-card">Des standards internationaux pour les marques visionnaires souhaitant captiver leur audience mondiale.</p>
+        <div class="details-prix">
+          <div class="prix-row"><span>Vidéo (Public)</span> <strong>dès 25€</strong></div>
+          <div class="prix-row"><span>Vidéo (Privé)</span> <strong>dès 60€</strong></div>
+          <div class="prix-row"><span>Photo (Public)</span> <strong>dès 8€</strong></div>
+          <div class="prix-row"><span>Photo (Privé)</span> <strong>dès 15€</strong></div>
+        </div>
+        <p class="usage-note">Utilisation libre pendant 6 mois</p>
+      </div>
+      <a href="#contact" class="btn-tarif btn-outline">Demander un devis</a>
+    </div>
+  </div>
+  <p class="phrase-unique-tarifs">Chaque prestation est unique. Pour une demande spécifique, nous discuterons d'autres tarifs.</p>
+</section>
+
+<!-- CONTACT -->
+<section class="section-contact" id="contact">
+  <div class="conteneur-titre-section">
+    <h2 class="grand-titre-contact">Let's work together</h2>
+  </div>
+  <div class="conteneur-contact">
+    <div class="colonne-cta">
+      <h2 class="titre-contact">On crée quelque chose d'unique ensemble ?</h2>
+      <p class="texte-cta">
+        Vous êtes une marque visionnaire, naturelle ou engagée ? Vous recherchez des contenus UGC authentiques qui captivent et convertissent ?
+        <br><br>
+        🌿 Collaborons pour transformer votre vision en visuels impactants. Je suis NoorahSPHÈRE, votre future partenaire en Beauté Consciente.
+      </p>
+      <div class="infos-contact">
+        <div class="info-item">
+          <span class="info-label">Email</span>
+          <a href="mailto:ugcbynoorah@gmail.com" class="info-lien">ugcbynoorah@gmail.com</a>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Localisation</span>
+          <span class="info-valeur">Madagascar</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Téléphone</span>
+          <a href="tel:+261345881048" class="info-lien">+261 34 58 810 48</a>
+        </div>
+      </div>
+    </div>
+    <div class="colonne-formulaire">
+      <form class="formulaire-contact" id="formulaireContact">
+        <div class="groupe-champ">
+          <label for="nom" class="label-champ">Nom / Nom de la marque</label>
+          <input type="text" id="nom" class="input-champ" required>
+        </div>
+        <div class="groupe-champ">
+          <label for="objet" class="label-champ">Objet</label>
+          <select id="objet" class="input-champ select-champ" required>
+            <option value="" disabled selected>Sélectionnez un objet</option>
+            <option value="Collaboration">Collaboration</option>
+            <option value="Gifting">Gifting</option>
+            <option value="Question">Question</option>
+            <option value="Autre">Autre</option>
+          </select>
+        </div>
+        <div class="groupe-champ">
+          <label for="budget" class="label-champ">Budget prévisionnel</label>
+          <input type="text" id="budget" class="input-champ" placeholder="€ - MGA">
+        </div>
+        <div class="groupe-champ">
+          <label for="message" class="label-champ">Message</label>
+          <textarea id="message" class="input-champ textarea-champ" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="bouton-envoyer">Envoyer un message</button>
+        <p class="signature-formulaire">Réponse sous 48h maximum</p>
+      </form>
+    </div>
+  </div>
+
+  <div class="modale-contact" id="modaleContact">
+    <div class="contenu-modale">
+      <button class="bouton-fermer" id="fermerModale">&times;</button>
+      <h3 class="titre-modale">Comment souhaitez-vous me contacter ?</h3>
+      <div class="options-contact">
+        <a href="#" target="_blank" class="option-btn option-whatsapp">
+          WhatsApp (Réponse rapide)
+          <span class="sous-texte-option">Réponse en moins de 2h</span>
+        </a>
+        <a href="#" class="option-btn option-email">
+          Email (Détailler le projet)
+          <span class="sous-texte-option">Réponse sous 48h</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="overlay-modale" id="overlayModale"></div>
+</section>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+  // --- Header scroll ---
+  const header = document.getElementById('headerPrincipal');
+  window.addEventListener('scroll', function() {
+    header.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // --- Décodage & formulaire ---
+  const secretMail = "dWdjYnlyb29yYWhAZ21haWwuY29t";
+  const secretTel  = "MjYxMzQ1ODgxMDQ4";
+  const decodeData = (encoded) => atob(encoded);
+
+  const formulaire  = document.getElementById('formulaireContact');
+  const modale      = document.getElementById('modaleContact');
+  const overlay     = document.getElementById('overlayModale');
+  const fermerBtn   = document.getElementById('fermerModale');
+  const lienWhatsapp = document.querySelector('.option-whatsapp');
+  const lienEmail    = document.querySelector('.option-email');
+
+  if (formulaire) {
+    formulaire.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const nom     = document.getElementById('nom').value;
+      const objet   = document.getElementById('objet').value;
+      const budget  = document.getElementById('budget').value || "Non spécifié";
+      const message = document.getElementById('message').value;
+
+      const texteWA = `Bonjour Noorah, je suis ${nom}.\n\nObjet : ${objet}\nBudget : ${budget}\n\nMessage :\n${message}`;
+      lienWhatsapp.href = `https://wa.me/${decodeData(secretTel)}?text=${encodeURIComponent(texteWA)}`;
+
+      const sujet = `Collaboration UGC - ${nom} (${objet})`;
+      const corps = `Bonjour Noorah,\n\nJe suis ${nom}.\nObjet : ${objet}\nBudget estimé : ${budget}\n\nMessage :\n${message}`;
+      lienEmail.href = `mailto:${decodeData(secretMail)}?subject=${encodeURIComponent(sujet)}&body=${encodeURIComponent(corps)}`;
+
+      modale.classList.add('active');
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  }
+
+  const fermerLaModale = () => {
+    modale.classList.remove('active');
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  };
+  if (fermerBtn) fermerBtn.addEventListener('click', fermerLaModale);
+  if (overlay)   overlay.addEventListener('click', fermerLaModale);
+  document.addEventListener('keydown', (e) => { if (e.key === "Escape") fermerLaModale(); });
+
+  // --- Clonage infini des rails horizontaux ---
+  document.querySelectorAll('.rail-horizontal').forEach(rail => {
+    rail.innerHTML += rail.innerHTML;
+  });
+
+  // --- Lazy load vidéos ---
+  const videoObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const video = entry.target;
+        video.querySelectorAll('source').forEach(s => { if (s.dataset.src) s.src = s.dataset.src; });
+        video.load();
+        video.play().catch(() => {});
+        observer.unobserve(video);
+      }
+    });
+  }, { rootMargin: '0px 0px 300px 0px', threshold: 0 });
+
+  document.querySelectorAll('.video-lazy-load').forEach(v => videoObserver.observe(v));
+});
+    </script>
+  </body>
+</html>
