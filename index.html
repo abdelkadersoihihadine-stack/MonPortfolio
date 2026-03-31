@@ -931,31 +931,41 @@ p, .desc-ugc, #ugc-desc {
 .titre-majeur {
     color: #D8A39D !important;
 }
-/* --- EN-TÊTE COMPACT MOBILE --- */
+/* --- EN-TÊTE NOIR COMPACT MOBILE --- */
 @media screen and (max-width: 768px) {
     header, .navbar, .nav-container {
-        padding: 0 !important;        /* Supprime l'espace interne haut/bas */
-        margin: 0 !important;         /* Supprime l'espace externe */
-        min-height: auto !important;  /* Autorise la barre à être fine */
-        height: auto !important;      /* La barre s'adapte à la taille du logo */
+        /* COULEUR NOIRE FORCÉE ICI */
+        background-color: #000000 !important; 
+        
+        padding: 0 !important;
+        margin: 0 !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        z-index: 9999 !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
+        height: auto !important;
+        min-height: auto !important;
     }
 
     header img, .logo {
         display: block !important;
-        margin: 0 auto !important;    /* Centre horizontalement sans espace vertical */
-        padding: 0 !important;        /* Supprime le rembourrage interne de l'image */
-        max-height: 100px !important; /* Garde une belle taille pour les détails */
+        margin: 0 auto !important;
+        padding: 0 !important;
+        
+        /* Garde la taille de ton logo intacte */
+        max-height: 100px !important; 
+        width: auto !important;
     }
 
-    /* On remonte la vidéo au maximum */
     body {
-        padding-top: 100px !important; /* Doit être égal à la taille réelle de ton logo */
+        /* Ajuste cette valeur pour que la vidéo commence juste sous le logo */
+        padding-top: 100px !important; 
     }
 }
-
   </style>
 </head>
 <body>
